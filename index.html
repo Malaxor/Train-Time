@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Scheduler</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Moment.js -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+	<!-- Javascript -->
+	<script src="app.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="jumbotron text-center" style="background-color: brown; color: white">
+    <h1>Train Scheduler</h1>
+    <h2 id="clock"></h2>
+    <h3>You Choo-Choo Choose Me</h3>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Train Schedule</div>
+
+  	<div class="panel-body">
+     <table class="table table-hover" id="train-table">
+     
+        <thead>
+	      <tr>
+	        <th>Train Name</th>
+	        <th>Destination</th>
+	        <th>Frequency</th>
+	        <th>Next Arrival</th>
+	        <th>Minutes Away</th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	    </tbody>
+
+	</table>    
+  </div>        
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Add Train</div>
+
+  <div class="panel-body">
+  	<form role="form">
+
+	  <div class="form-group">
+	    <label for="employee">Train Name</label>
+	    <input type="text" class="form-control" id="train-name">
+	  </div>
+
+	  <div class="form-group">
+	    <label for="role">Destination</label>
+	    <input type="text" class="form-control" id="destination">
+	  </div>
+
+	  <div class="form-group">
+	    <label for="startDate">First Train Time (HH:mm - Military Time)</label>
+	    <input type="text" class="form-control" id="first-train">
+	  </div>
+
+	  <div class="form-group">
+	  	<label for="monthRate">Frequency (min.)</label>
+	  	<input type="text" class="form-control" id="frequency">
+	  </div> 
+
+	  <button type="submit" class="btn btn-primary" id="add-train">Add Train</button>
+
+	</form>
+  </div> <!-- END panel-body END -->
+</div> <!-- END panel-primary END -->
+	
+
+</div> <!-- END container END -->
+
+</body>
+</html>
