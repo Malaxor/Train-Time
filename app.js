@@ -59,7 +59,7 @@ database.ref().on("child_added", retrieve => {
 		`<tr>
 			<td>${train}</td>
 			<td>${destination}</td>
-			<td>${frequency} minutes</td>
+			<td>${frequency} minute(s)</td>
 			<td>${nextStop}</td>
 			<td>${minAway}</td>
 		</tr>`
