@@ -22,7 +22,7 @@ $("#add-train").on("click", event => {
 
 	const train = $("#train-name").val().trim();
 	const destination = $("#destination").val().trim();
-	const firstTrain = $("#first-train").val().trim();
+	const firstTrain = moment($("#first-train").val().trim(), "HH:mm").subtract(10, "years").format("X");
 	const frequency = $("#frequency").val().trim();
 
   	const dataTrain = {
@@ -41,27 +41,17 @@ $("#add-train").on("click", event => {
 });
 
 database.ref().on("child_added", retrieve => {
-
-	console.log(retrieve.val());
-	// store the database's object's properties in variables
+	// store the database object's properties in variables
 	const { train, destination, firstTrain, frequency } = retrieve.val();
 	// convert the retrieved value into readable hours and minutes
-	let firstTrainConverted = moment(firstTrain, "hh:mm");
-	console.log(firstTrainConverted);
-	// create a variable that will store the calculated difference (in minutes) between now and the train's first run
-	let timeDiff = moment().diff(firstTrainConverted, "minutes");
-	console.log(`${timeDiff} minutes have passed since the train's first stop`);
+	const firstTrainConverted = moment.unix(firstTrain);
+	// calculate the difference (in minutes) between now and the train's first run
 	// use modulus to caculate the remainder, and store the remainder in a variable 
-	let remainder = timeDiff % frequency;
-	console.log(remainder);
+	const timeDiff = moment().diff(firstTrainConverted, "minutes") % frequency;
 	// calculate how many minutes away is the next train
-	let minAway = frequency - remainder;
-	console.log(`The next train is in ${minAway} minute(s)`);
+	const minAway = frequency - timeDiff;
 	// cacluated the train's next arrival
-	let nextStop = moment().add(minAway, "minutes");
-	//convert the variable from unix time to readable hours and minutes
-	nextStop = moment(nextStop).format("hh:mm");
-	console.log(`The next train will arrive at ${nextStop}`);
+	const nextStop = moment().add(minAway, "m").format("hh:mm A");
 
   //display the pertinent information in the train schedule panel
    $("#train-table > tbody")
@@ -69,7 +59,7 @@ database.ref().on("child_added", retrieve => {
 		`<tr>
 			<td>${train}</td>
 			<td>${destination}</td>
-			<td> ${frequency}</td>
+			<td>${frequency} minutes</td>
 			<td>${nextStop}</td>
 			<td>${minAway}</td>
 		</tr>`
