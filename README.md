@@ -6,4 +6,4 @@ This website will provide up-to-date information about various trains, namely th
 
 Technology used: HTML, JavaScript, Bootstrap CSS, Moment.js, Firebase.
 
-Project hosted here: https://malaxor.github.io/Train-Scheduler/
+Project hosted here: https://malaxor.github.io/Train-Time/
